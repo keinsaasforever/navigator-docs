@@ -1,68 +1,57 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "Mint Starter Kit",
+  "name": "Keinsaas Navigator",
   "colors": {
-    "primary": "#16A34A",
-    "light": "#07C983",
-    "dark": "#15803D"
+    "primary": "#6366F1",
+    "light": "#8B5CF6",
+    "dark": "#4F46E5"
   },
   "favicon": "/favicon.svg",
   "navigation": {
     "tabs": [
       {
-        "tab": "Guides",
+        "tab": "Features",
         "groups": [
           {
-            "group": "Getting started",
+            "group": "Core Tools",
             "pages": [
-              "index",
-              "quickstart",
-              "development"
+              "features/visual-workflows",
+              "features/custom-agents",
+              "features/voice-assistant",
+              "features/quick-mentions",
+              "features/tool-choice-mode",
+              "features/default-tools"
             ]
           },
           {
-            "group": "Customization",
+            "group": "Advanced Capabilities",
             "pages": [
-              "essentials/settings",
-              "essentials/navigation"
-            ]
-          },
-          {
-            "group": "Writing content",
-            "pages": [
-              "essentials/markdown",
-              "essentials/code",
-              "essentials/images",
-              "essentials/reusable-snippets"
-            ]
-          },
-          {
-            "group": "AI tools",
-            "pages": [
-              "ai-tools/cursor",
-              "ai-tools/claude-code",
-              "ai-tools/windsurf"
+              "features/web-search",
+              "features/js-python-executor",
+              "features/data-visualization"
             ]
           }
         ]
       },
       {
-        "tab": "API reference",
+        "tab": "Guides",
         "groups": [
           {
-            "group": "API documentation",
+            "group": "Getting Started",
             "pages": [
-              "api-reference/introduction"
+              "introduction",
+              "index",
+              "quickstart"
             ]
           },
           {
-            "group": "Endpoint examples",
+            "group": "Configuration",
             "pages": [
-              "api-reference/endpoint/get",
-              "api-reference/endpoint/create",
-              "api-reference/endpoint/delete",
-              "api-reference/endpoint/webhook"
+              "guides/mcp-server-setup",
+              "guides/mcp-configuration",
+              "guides/system-prompts",
+              "guides/chat-customization"
             ]
           }
         ]
@@ -71,14 +60,14 @@
     "global": {
       "anchors": [
         {
-          "anchor": "Documentation",
-          "href": "https://mintlify.com/docs",
-          "icon": "book-open-cover"
+          "anchor": "Support",
+          "href": "mailto:support@keinsaas.com",
+          "icon": "headset"
         },
         {
-          "anchor": "Blog",
-          "href": "https://mintlify.com/blog",
-          "icon": "newspaper"
+          "anchor": "Demo",
+          "href": "https://app.keinsaas.com",
+          "icon": "play"
         }
       ]
     }
@@ -91,13 +80,13 @@
     "links": [
       {
         "label": "Support",
-        "href": "mailto:hi@mintlify.com"
+        "href": "mailto:support@keinsaas.com"
       }
     ],
     "primary": {
       "type": "button",
-      "label": "Dashboard",
-      "href": "https://dashboard.mintlify.com"
+      "label": "Try Demo",
+      "href": "https://app.keinsaas.com"
     }
   },
   "contextual": {
@@ -114,9 +103,9 @@
   },
   "footer": {
     "socials": {
-      "x": "https://x.com/mintlify",
-      "github": "https://github.com/mintlify",
-      "linkedin": "https://linkedin.com/company/mintlify"
+      "x": "https://x.com/keinsaas",
+      "github": "https://github.com/keinsaas",
+      "linkedin": "https://linkedin.com/company/keinsaas"
     }
   }
 }

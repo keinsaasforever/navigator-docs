@@ -1,0 +1,446 @@
+---
+title: "JS,PYTHON Executor"
+description: "Execute JavaScript and Python code directly within your conversations for data analysis and automation"
+---
+
+## JS,PYTHON Executor
+
+Execute JavaScript and Python code directly within your Keinsaas Navigator conversations. Perfect for data analysis, automation, calculations, and rapid prototyping without leaving your chat interface.
+
+<Card
+  title="Try Code Execution"
+  icon="play"
+  href="https://app.keinsaas.com"
+  horizontal
+>
+  Experience code execution in our live demo.
+</Card>
+
+## What is the Code Executor?
+
+The JS,PYTHON Executor allows you to run JavaScript and Python code directly within your AI conversations. It's designed for quick calculations, data analysis, automation tasks, and rapid prototyping without needing external development environments.
+
+### Key Benefits
+
+<Columns cols={2}>
+  <Card
+    title="⚡ Instant Execution"
+    icon="bolt"
+  >
+    Run code immediately without setup or compilation steps.
+  </Card>
+  <Card
+    title="🔒 Safe Environment"
+    icon="shield"
+  >
+    Sandboxed execution environment protects your system.
+  </Card>
+  <Card
+    title="📊 Data Integration"
+    icon="database"
+  >
+    Seamlessly work with data from your conversations and tools.
+  </Card>
+  <Card
+    title="🔄 Interactive Development"
+    icon="code"
+  >
+    Iterate and refine code through conversation with AI assistance.
+  </Card>
+</Columns>
+
+## Supported Languages
+
+### JavaScript
+
+<AccordionGroup>
+  <Accordion icon="js" title="JavaScript Features">
+    **Full JavaScript support including**:
+    
+    - ES6+ features (arrow functions, destructuring, modules)
+    - Async/await and Promises
+    - Array methods and functional programming
+    - Object manipulation and JSON handling
+    - Regular expressions and string processing
+  </Accordion>
+  <Accordion icon="node" title="Node.js APIs">
+    **Available Node.js APIs**:
+    
+    - File system operations
+    - HTTP requests and responses
+    - Date and time utilities
+    - Math and utility functions
+    - Buffer and stream operations
+  </Accordion>
+  <Accordion icon="package" title="Built-in Libraries">
+    **Pre-installed libraries**:
+    
+    - Lodash for utility functions
+    - Moment.js for date manipulation
+    - Axios for HTTP requests
+    - Crypto for encryption/hashing
+    - Path and URL utilities
+  </Accordion>
+</AccordionGroup>
+
+### Python
+
+<AccordionGroup>
+  <Accordion icon="python" title="Python Features">
+    **Full Python 3.x support including**:
+    
+    - All standard library modules
+    - List comprehensions and generators
+    - Decorators and context managers
+    - Exception handling and logging
+    - Object-oriented programming
+  </Accordion>
+  <Accordion icon="data" title="Data Science Libraries">
+    **Pre-installed data science libraries**:
+    
+    - NumPy for numerical computing
+    - Pandas for data manipulation
+    - Matplotlib for plotting
+    - SciPy for scientific computing
+    - Scikit-learn for machine learning
+  </Accordion>
+  <Accordion icon="web" title="Web and API Libraries">
+    **Web development libraries**:
+    
+    - Requests for HTTP requests
+    - BeautifulSoup for web scraping
+    - Flask for web applications
+    - JSON and CSV handling
+    - Regular expressions
+  </Accordion>
+</AccordionGroup>
+
+## Using the Code Executor
+
+### Basic Usage
+
+<AccordionGroup>
+  <Accordion icon="at" title="@code Mentions">
+    **Use @code for direct execution**:
+    
+    - `@code execute python [code]`
+    - `@code run javascript [code]`
+    - `@code calculate [mathematical expression]`
+    - `@code analyze [data analysis code]`
+  </Accordion>
+  <Accordion icon="chat" title="Natural Language">
+    **Ask for code execution naturally**:
+    
+    - "Write a Python function to sort this list"
+    - "Calculate the compound interest for these values"
+    - "Create a JavaScript function to validate email addresses"
+    - "Analyze this data and create a summary"
+  </Accordion>
+  <Accordion icon="code" title="Code Blocks">
+    **Use code blocks in conversations**:
+    
+    ```python
+    # Python code here
+    data = [1, 2, 3, 4, 5]
+    result = sum(data) / len(data)
+    print(f"Average: {result}")
+    ```
+  </Accordion>
+</AccordionGroup>
+
+### Code Execution Examples
+
+<AccordionGroup>
+  <Accordion icon="calculator" title="Mathematical Calculations">
+    **JavaScript Example**:
+    ```javascript
+    // Calculate compound interest
+    function compoundInterest(principal, rate, time) {
+        return principal * Math.pow(1 + rate, time);
+    }
+    
+    const result = compoundInterest(1000, 0.05, 10);
+    console.log(`Compound interest: $${result.toFixed(2)}`);
+    ```
+    
+    **Python Example**:
+    ```python
+    # Statistical analysis
+    import statistics
+    
+    data = [85, 90, 78, 92, 88, 76, 95, 89, 84, 91]
+    mean = statistics.mean(data)
+    median = statistics.median(data)
+    std_dev = statistics.stdev(data)
+    
+    print(f"Mean: {mean:.2f}")
+    print(f"Median: {median}")
+    print(f"Standard Deviation: {std_dev:.2f}")
+    ```
+  </Accordion>
+  <Accordion icon="chart-bar" title="Data Analysis">
+    **Python Data Analysis**:
+    ```python
+    import pandas as pd
+    import matplotlib.pyplot as plt
+    
+    # Create sample data
+    data = {
+        'Month': ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
+        'Sales': [100, 120, 110, 140, 130],
+        'Expenses': [80, 85, 90, 95, 88]
+    }
+    
+    df = pd.DataFrame(data)
+    df['Profit'] = df['Sales'] - df['Expenses']
+    
+    print(df)
+    print(f"Total Profit: ${df['Profit'].sum()}")
+    ```
+  </Accordion>
+  <Accordion icon="web" title="Web Scraping">
+    **Python Web Scraping**:
+    ```python
+    import requests
+    from bs4 import BeautifulSoup
+    
+    # Simple web scraping example
+    url = "https://example.com"
+    response = requests.get(url)
+    soup = BeautifulSoup(response.content, 'html.parser')
+    
+    # Extract all headings
+    headings = soup.find_all(['h1', 'h2', 'h3'])
+    for heading in headings:
+        print(heading.get_text().strip())
+    ```
+  </Accordion>
+</AccordionGroup>
+
+## Advanced Features
+
+### Data Persistence
+
+<AccordionGroup>
+  <Accordion icon="database" title="Session Variables">
+    **Maintain data across executions**:
+    
+    - Variables persist within the same conversation
+    - Share data between JavaScript and Python
+    - Build complex workflows across multiple executions
+    - Maintain state for iterative development
+  </Accordion>
+  <Accordion icon="file" title="File Operations">
+    **File system access**:
+    
+    - Read and write files
+    - Process CSV and JSON data
+    - Generate reports and documents
+    - Create temporary files for processing
+  </Accordion>
+</AccordionGroup>
+
+### Error Handling and Debugging
+
+<Columns cols={2}>
+  <Card
+    title="🐛 Error Reporting"
+    icon="bug"
+  >
+    Detailed error messages with line numbers and suggestions
+  </Card>
+  <Card
+    title="🔍 Debugging Support"
+    icon="search"
+  >
+    Step-through debugging and variable inspection
+  </Card>
+  <Card
+    title="📝 Code Suggestions"
+    icon="lightbulb"
+  >
+    AI-powered suggestions for fixing common errors
+  </Card>
+  <Card
+    title="⚡ Performance Monitoring"
+    icon="gauge"
+  >
+    Execution time and resource usage tracking
+  </Card>
+</Columns>
+
+### Integration with Other Tools
+
+<AccordionGroup>
+  <Accordion icon="chart-bar" title="Data Visualization">
+    **Create charts and graphs**:
+    
+    - Generate matplotlib plots
+    - Create interactive visualizations
+    - Export charts as images
+    - Integrate with data analysis workflows
+  </Accordion>
+  <Accordion icon="web" title="API Integration">
+    **Connect to external services**:
+    
+    - Make HTTP requests to APIs
+    - Process JSON responses
+    - Handle authentication
+    - Integrate with web services
+  </Accordion>
+  <Accordion icon="database" title="Database Operations">
+    **Database connectivity**:
+    
+    - Connect to databases
+    - Execute SQL queries
+    - Process query results
+    - Generate database reports
+  </Accordion>
+</AccordionGroup>
+
+## Security and Safety
+
+### Sandboxed Environment
+
+<AccordionGroup>
+  <Accordion icon="shield" title="Security Measures">
+    **Protection features**:
+    
+    - Isolated execution environment
+    - Limited system access
+    - Resource usage limits
+    - Malicious code detection
+  </Accordion>
+  <Accordion icon="clock" title="Execution Limits">
+    **Resource constraints**:
+    
+    - Maximum execution time limits
+    - Memory usage restrictions
+    - CPU usage monitoring
+    - File system access controls
+  </Accordion>
+  <Accordion icon="ban" title="Restricted Operations">
+    **Blocked operations**:
+    
+    - Network access to unauthorized domains
+    - File system access outside sandbox
+    - System command execution
+    - Process spawning and control
+  </Accordion>
+</AccordionGroup>
+
+### Best Practices
+
+<AccordionGroup>
+  <Accordion icon="lightbulb" title="Code Quality">
+    **Write clean, readable code**:
+    
+    - Use meaningful variable names
+    - Add comments for complex logic
+    - Follow language best practices
+    - Test code thoroughly
+  </Accordion>
+  <Accordion icon="exclamation-triangle" title="Error Handling">
+    **Handle errors gracefully**:
+    
+    - Use try-catch blocks
+    - Validate input data
+    - Provide meaningful error messages
+    - Test edge cases
+  </Accordion>
+  <Accordion icon="recycle" title="Resource Management">
+    **Optimize resource usage**:
+    
+    - Clean up temporary files
+    - Limit data processing size
+    - Use efficient algorithms
+    - Monitor execution time
+  </Accordion>
+</AccordionGroup>
+
+## Common Use Cases
+
+### Data Analysis and Processing
+
+<Steps>
+  <Step title="Data Import">
+    Load data from files, APIs, or user input
+  </Step>
+  <Step title="Data Cleaning">
+    Remove duplicates, handle missing values, standardize formats
+  </Step>
+  <Step title="Analysis">
+    Perform statistical analysis, calculations, and transformations
+  </Step>
+  <Step title="Visualization">
+    Create charts, graphs, and visual representations
+  </Step>
+  <Step title="Reporting">
+    Generate summaries, reports, and insights
+  </Step>
+</Steps>
+
+### Automation and Scripting
+
+<AccordionGroup>
+  <Accordion icon="robot" title="Task Automation">
+    **Automate repetitive tasks**:
+    
+    - File processing and organization
+    - Data transformation and cleaning
+    - Report generation and distribution
+    - Email and notification sending
+  </Accordion>
+  <Accordion icon="clock" title="Scheduled Tasks">
+    **Time-based automation**:
+    
+    - Daily data processing
+    - Weekly report generation
+    - Monthly data archiving
+    - Quarterly analysis updates
+  </Accordion>
+</AccordionGroup>
+
+### Rapid Prototyping
+
+<Columns cols={2}>
+  <Card
+    title="💡 Idea Testing"
+    icon="lightbulb"
+  >
+    Quickly test ideas and concepts with code
+  </Card>
+  <Card
+    title="🔧 Algorithm Development"
+    icon="cog"
+  >
+    Develop and test algorithms interactively
+  </Card>
+  <Card
+    title="📊 Data Exploration"
+    icon="chart-line"
+  >
+    Explore and understand data through code
+  </Card>
+  <Card
+    title="🛠️ Tool Creation"
+    icon="wrench"
+  >
+    Create custom tools and utilities
+  </Card>
+</Columns>
+
+## Getting Help
+
+<Card
+  title="Code Executor Support"
+  icon="headset"
+  href="mailto:support@keinsaas.com"
+  horizontal
+>
+  Need help with code execution or want to suggest new features? Our support team is here to assist.
+</Card>
+
+<Note>
+  **Pro Tip**: Start with simple calculations and gradually work up to more complex code. The AI can help you debug and improve your code as you develop it.
+</Note>
