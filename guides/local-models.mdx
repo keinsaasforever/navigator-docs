@@ -1,0 +1,38 @@
+---
+title: "Local Models"
+description: "Connect Navigator to Ollama or another local OpenAI-compatible model server."
+---
+
+Navigator can work with local or self-hosted model endpoints when they expose a compatible API. This is useful for private workloads, offline experiments, and avoiding per-token usage on external providers.
+
+## Ollama
+
+Start Ollama locally, pull a model, and point Navigator at the endpoint.
+
+```bash
+ollama pull llama3.1
+ollama serve
+```
+
+```dotenv
+OLLAMA_BASE_URL=http://localhost:11434/api
+```
+
+## OpenAI-compatible providers
+
+Use OpenRouter or another compatible gateway when you want model choice through a common API style.
+
+```dotenv
+OPENROUTER_API_KEY=
+```
+
+## Checks
+
+- The local server is reachable from the Navigator runtime
+- The selected model is downloaded or available from the provider
+- The base URL includes the path expected by the integration
+- Hosted deployments can reach the model endpoint if the endpoint is not local-only
+
+<Info>
+  A browser running at `app.example.com` cannot call `localhost` on your laptop through the hosted server. Use local development, a tunnel, or a reachable model gateway for hosted deployments.
+</Info>

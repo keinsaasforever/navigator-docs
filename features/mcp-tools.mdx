@@ -1,0 +1,38 @@
+---
+title: "MCP Tools"
+description: "Connect Navigator to external tools and data through Model Context Protocol servers."
+---
+
+MCP tools extend Navigator beyond built-in capabilities. A server can expose browser control, file operations, database access, internal APIs, SaaS actions, or any other tool that follows the Model Context Protocol.
+
+<Frame>
+  <img src="https://github.com/user-attachments/assets/e4febb04-26d5-45da-a7bb-f7d452d333c2" alt="Navigator browser automation through Playwright MCP" />
+</Frame>
+
+## What MCP adds
+
+<Columns cols={2}>
+  <Card title="Tool discovery" icon="list">
+    Navigator can list the tools exposed by a configured server.
+  </Card>
+  <Card title="Structured calls" icon="braces">
+    Tool inputs and outputs are passed as structured data.
+  </Card>
+  <Card title="Server choice" icon="server">
+    Use local `stdio` servers, remote SSE servers, or streamable HTTP servers.
+  </Card>
+  <Card title="User control" icon="shield">
+    Pair MCP with manual tool mode for sensitive actions.
+  </Card>
+</Columns>
+
+## Example prompt
+
+```text
+Use @playwright to open the staging login page, complete the happy path,
+and report any visible errors or broken UI states.
+```
+
+<Card title="Set up an MCP server" icon="plug" href="/guides/mcp-server-setup" horizontal>
+  Add your first server, test its tools, and make it available in chat.
+</Card>

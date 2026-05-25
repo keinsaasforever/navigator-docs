@@ -1,0 +1,40 @@
+---
+title: "Code Execution"
+description: "Run JavaScript and Python for analysis, transformation, and automation."
+---
+
+Navigator includes code execution so the assistant can calculate, transform data, prototype logic, and produce artifacts without leaving the chat.
+
+<Frame>
+  <img src="https://github.com/user-attachments/assets/7deed824-e70b-46d4-a294-de20ed4dc869" alt="Navigator JavaScript execution preview" />
+</Frame>
+
+## Execution backends
+
+```dotenv
+NEXT_PUBLIC_CODE_EXECUTION_BACKEND=local
+E2B_API_KEY=
+```
+
+Use the local browser worker for lightweight execution. Add E2B when you want server-side sandbox execution and richer preview flows.
+
+## Typical tasks
+
+<AccordionGroup>
+  <Accordion title="Data cleanup" icon="table">
+    Parse CSV, normalize fields, calculate totals, and produce clean tables.
+  </Accordion>
+  <Accordion title="Quick calculations" icon="calculator">
+    Run exact arithmetic, statistics, conversions, and small simulations.
+  </Accordion>
+  <Accordion title="API payload shaping" icon="code">
+    Transform JSON into the structure expected by an API, webhook, or workflow.
+  </Accordion>
+  <Accordion title="Chart preparation" icon="chart-line">
+    Aggregate rows and prepare data for visualization tools.
+  </Accordion>
+</AccordionGroup>
+
+<Warning>
+  Do not expose server-only secrets to browser-visible code execution. Keep private keys in server-side environment variables.
+</Warning>

@@ -1,131 +1,78 @@
 ---
 title: "Quickstart"
-description: "Get started with Keinsaas Navigator in minutes"
+description: "Run KeinSaaS Navigator with one model provider and a local database."
 ---
 
-## Welcome to Keinsaas Navigator
+This path gets Navigator running locally with `pnpm`, PostgreSQL, and one AI provider key.
 
-Get up and running with your intelligent AI assistant in just a few simple steps. Keinsaas Navigator is designed to be intuitive and powerful from day one.
+<Info>
+  You only need one provider key to start. OpenAI, Anthropic, Google Gemini, xAI, OpenRouter, or an Ollama-compatible endpoint can be added later.
+</Info>
 
-<Card
-  title="Try the Live Demo"
-  icon="play"
-  href="https://app.keinsaas.com"
-  horizontal
->
-  Experience Keinsaas Navigator immediately with our interactive demo.
-</Card>
+<Steps>
+  <Step title="Install dependencies">
+    ```bash
+    pnpm i
+    ```
 
-## Getting Started in 3 Steps
+    The install step runs the project setup script and prepares a `.env` file from the example configuration.
+  </Step>
+  <Step title="Start PostgreSQL">
+    ```bash
+    pnpm docker:pg
+    ```
 
-### Step 1: Access Your Navigator
+    If you already have PostgreSQL, keep it running and set `POSTGRES_URL` in `.env` instead.
+  </Step>
+  <Step title="Add credentials">
+    Open `.env` and fill in:
 
-<AccordionGroup>
-  <Accordion icon="globe" title="Use the Demo (Recommended)">
-    The fastest way to get started is with our live demo at [app.keinsaas.com](https://app.keinsaas.com).
-    
-    - No setup required
-    - Full feature access
-    - Perfect for testing and evaluation
-  </Accordion>
-  <Accordion icon="cloud" title="Deploy Your Own Instance">
-    For production use or custom configurations, you can deploy your own instance:
-    
-    1. Fork the [navigator repository](https://github.com/cgoinglove/navigator)
-    2. Deploy to Vercel, Docker, or your preferred platform
-    3. Configure your environment variables
-    4. Start using your personalized instance
-  </Accordion>
-</AccordionGroup>
+    ```dotenv
+    BETTER_AUTH_SECRET=your-generated-secret
+    POSTGRES_URL=postgres://your_username:your_password@localhost:5432/your_database_name
+    OPENAI_API_KEY=sk-...
+    ```
 
-### Step 2: Configure Your AI Provider
+    Swap `OPENAI_API_KEY` for another provider if your deployment uses Anthropic, Google, xAI, OpenRouter, or Ollama.
+  </Step>
+  <Step title="Apply database migrations">
+    ```bash
+    pnpm db:migrate
+    ```
+  </Step>
+  <Step title="Run the app">
+    ```bash
+    pnpm dev
+    ```
 
-<AccordionGroup>
-  <Accordion icon="key" title="Add Your API Keys">
-    Keinsaas Navigator supports multiple AI providers. Choose one or more:
-    
-    **OpenAI (Recommended)**
-    - Get your API key from [OpenAI Platform](https://platform.openai.com/api-keys)
-    - Add it to your environment configuration
-    
-    **Anthropic Claude**
-    - Obtain your API key from [Anthropic Console](https://console.anthropic.com/)
-    - Configure in your settings
-    
-    **Google Gemini**
-    - Get your API key from [Google AI Studio](https://makersuite.google.com/app/apikey)
-    - Add to your configuration
-    
-    <Tip>You only need one provider to get started, but multiple providers give you more options and redundancy.</Tip>
-  </Accordion>
-  <Accordion icon="cog" title="Optional: Configure Additional Tools">
-    For enhanced functionality, you can optionally configure:
-    
-    - **Exa AI**: For advanced web search capabilities
-    - **Database**: For conversation history and user management
-    - **File Storage**: For document uploads and management
-  </Accordion>
-</AccordionGroup>
+    Open `http://localhost:3000` and start your first thread.
+  </Step>
+</Steps>
 
-### Step 3: Start Using Your Navigator
-
-<Accordion icon="rocket" title="Begin Your First Conversation">
-  You're ready to start! Here's how to make the most of your Keinsaas Navigator:
-  
-  1. **Start a conversation**: Type your question or request
-  2. **Use @ mentions**: Type @ to access tools and presets quickly
-  3. **Try voice input**: Click the microphone icon for voice interaction
-  4. **Explore tools**: Use the tool panel to discover available capabilities
-  5. **Customize settings**: Access preferences to personalize your experience
-</Accordion>
-
-## Key Features to Try
-
-Once you're up and running, explore these powerful capabilities:
+## First things to try
 
 <CardGroup cols={2}>
-  <Card title="🔗 Visual Workflows" icon="workflow" href="/features/visual-workflows">
-    Create custom automation workflows without coding.
+  <Card title="Mention a tool" icon="at" href="/features/quick-mentions">
+    Type `@` in chat and pick an available tool, workflow, preset, or agent.
   </Card>
-  <Card title="🤖 Custom Agents" icon="robot" href="/features/custom-agents">
-    Deploy specialized AI agents for specific tasks.
+  <Card title="Switch tool mode" icon="sliders" href="/features/tool-choice-mode">
+    Use automatic, manual, or disabled tool execution depending on the task.
   </Card>
-  <Card title="🎙️ Voice Assistant" icon="microphone" href="/features/voice-assistant">
-    Interact naturally with voice commands.
+  <Card title="Add web search" icon="globe" href="/features/web-search">
+    Add `EXA_API_KEY` to let Navigator research and extract web content.
   </Card>
-  <Card title="📊 Data Visualization" icon="chart-bar" href="/features/data-visualization">
-    Create charts and tables from your data.
+  <Card title="Connect MCP" icon="plug" href="/guides/mcp-server-setup">
+    Register an MCP server and test its tools from the Navigator interface.
   </Card>
 </CardGroup>
 
-## Next Steps
+## Docker shortcut
 
-<CardGroup cols={2}>
-  <Card title="MCP Server Setup" icon="plug" href="/guides/mcp-server-setup">
-    Configure MCP servers for enhanced tool integration.
-  </Card>
-  <Card title="System Prompts" icon="message" href="/guides/system-prompts">
-    Customize your AI assistant's behavior and responses.
-  </Card>
-  <Card title="Chat Customization" icon="sliders" href="/guides/chat-customization">
-    Personalize your interaction experience.
-  </Card>
-  <Card title="Advanced Configuration" icon="cog" href="/guides/mcp-configuration">
-    Set up advanced features and integrations.
-  </Card>
-</CardGroup>
+If you prefer the bundled Docker Compose path:
 
-## Need Help?
+```bash
+pnpm i
+pnpm docker-compose:up
+```
 
-<Card
-  title="Get Support"
-  icon="headset"
-  href="mailto:support@keinsaas.com"
-  horizontal
->
-  Our support team is here to help you get the most out of Keinsaas Navigator.
-</Card>
-
-<Note>
-  **Pro Tip**: Start with the demo to explore features, then deploy your own instance when you're ready for production use with your data and customizations.
-</Note>
+Then fill the generated `.env` with provider keys and open `http://localhost:3000`.

@@ -1,380 +1,51 @@
 ---
-title: "System Prompts & Chat Customization"
-description: "Personalize your chatbot experience with custom system prompts, user preferences, and MCP tool instructions"
+title: "System Prompts"
+description: "Shape Navigator behavior with personal, team, and agent-level instructions."
 ---
 
-## System Prompts & Chat Customization
+System prompts define how the assistant should work before a user sends a message. In Navigator, prompts are most useful when they clarify role, constraints, available context, and tool-use preferences.
 
-Personalize your Keinsaas Navigator experience with custom system prompts, user preferences, and MCP tool instructions. Create a tailored AI assistant that understands your needs and responds in your preferred style.
+## Prompt layers
 
-<Card
-  title="Try Customization"
-  icon="play"
-  href="https://app.keinsaas.com"
-  horizontal
->
-  Experience customization features in our live demo.
-</Card>
-
-## What are System Prompts?
-
-System prompts are instructions that define how your AI assistant behaves, responds, and interacts with you. They act as the "personality" and "knowledge base" for your AI assistant, shaping its responses to match your preferences and requirements.
-
-### Key Benefits
-
-<Columns cols={2}>
-  <Card
-    title="🎯 Personalized Experience"
-    icon="user"
-  >
-    Customize the assistant to match your communication style and preferences.
+<CardGroup cols={2}>
+  <Card title="Personal preferences" icon="user">
+    Set tone, language, formatting, and recurring context for your own account.
   </Card>
-  <Card
-    title="🧠 Context Awareness"
-    icon="brain"
-  >
-    Provide context about your role, industry, and specific needs.
+  <Card title="Agent instructions" icon="robot">
+    Give each custom agent a narrow job and clear boundaries.
   </Card>
-  <Card
-    title="⚡ Consistent Behavior"
-    icon="sync"
-  >
-    Ensure the assistant behaves consistently across all conversations.
+  <Card title="Tool guidance" icon="wrench">
+    Explain when a tool should or should not be used.
   </Card>
-  <Card
-    title="🔧 Tool Integration"
-    icon="wrench"
-  >
-    Customize how the assistant uses MCP tools and external services.
+  <Card title="Workflow instructions" icon="workflow">
+    Describe how a published workflow should interpret inputs and report results.
   </Card>
-</Columns>
+</CardGroup>
 
-## Accessing Chat Preferences
+## Good prompt shape
 
-### How to Access Settings
+```text
+You are a support operations analyst.
 
-<Steps>
-  <Step title="Open Settings">
-    Click the settings button in the bottom-left corner of the interface
-  </Step>
-  <Step title="Select Chat Preferences">
-    Choose "Chat Preferences" from the dropdown menu
-  </Step>
-  <Step title="Customize Settings">
-    Configure your personal preferences and system prompts
-  </Step>
-  <Step title="Save Changes">
-    Save your settings to apply them immediately
-  </Step>
-</Steps>
+Goal:
+- Triage incoming customer issues and propose the next action.
 
-### Settings Categories
+Context:
+- Treat enterprise customers as high priority.
+- If confidence is low, ask one clarifying question.
 
-<AccordionGroup>
-  <Accordion icon="user" title="Personal Preferences">
-    **Basic user information**:
-    
-    - Assistant name preferences
-    - Your role/profession
-    - Communication style
-    - Language preferences
-  </Accordion>
-  <Accordion icon="cog" title="System Prompts">
-    **AI behavior customization**:
-    
-    - Custom instructions
-    - Response formatting
-    - Knowledge base integration
-    - Tool usage preferences
-  </Accordion>
-  <Accordion icon="wrench" title="MCP Tool Instructions">
-    **Tool-specific customization**:
-    
-    - Tool usage guidelines
-    - Default parameters
-    - Error handling preferences
-    - Output formatting
-  </Accordion>
-</AccordionGroup>
+Tools:
+- Use @web only for public documentation lookup.
+- Use CRM tools only in manual mode.
 
-## Personal Preferences
+Output:
+- Return priority, reasoning, suggested owner, and draft reply.
+```
 
-### Assistant Name
+## Guidelines
 
-<AccordionGroup>
-  <Accordion icon="tag" title="Setting Your Name">
-    **How you'd like the assistant to address you**:
-    
-    - **Formal**: "Dr. Smith", "Mr. Johnson"
-    - **Professional**: "Alex", "Sarah"
-    - **Casual**: "Hey there", "Buddy"
-    - **Custom**: Any name or title you prefer
-    
-    **Example**: "Please call me Alex" or "Address me as Dr. Smith"
-  </Accordion>
-  <Accordion icon="lightbulb" title="Pro Tips">
-    **Best practices for naming**:
-    
-    - Be consistent across all conversations
-    - Choose names that feel natural to you
-    - Consider your professional context
-    - Update as your preferences change
-  </Accordion>
-</AccordionGroup>
-
-### Your Role/Profession
-
-<AccordionGroup>
-  <Accordion icon="briefcase" title="Professional Context">
-    **Define your professional background**:
-    
-    - **Job Title**: "Software Engineer", "Marketing Manager", "Student"
-    - **Industry**: "Healthcare", "Finance", "Education", "Technology"
-    - **Experience Level**: "Junior", "Senior", "Expert", "Beginner"
-    - **Specializations**: Specific skills or areas of expertise
-    
-    **Example**: "I'm a Senior Software Engineer specializing in React and Node.js"
-  </Accordion>
-  <Accordion icon="target" title="Why This Matters">
-    **How role information helps**:
-    
-    - Tailors explanations to your level
-    - Uses appropriate terminology
-    - Suggests relevant tools and resources
-    - Provides industry-specific insights
-  </Accordion>
-</AccordionGroup>
-
-### Response Style
-
-<AccordionGroup>
-  <Accordion icon="chat" title="Communication Preferences">
-    **How you prefer the assistant to communicate**:
-    
-    - **Tone**: Professional, casual, friendly, technical
-    - **Length**: Brief, detailed, comprehensive
-    - **Format**: Bullet points, paragraphs, structured
-    - **Approach**: Direct, exploratory, collaborative
-    
-    **Examples**:
-    - "Keep explanations brief and to the point"
-    - "When learning new concepts, I find analogies particularly helpful"
-    - "Ask clarifying questions before giving detailed answers"
-  </Accordion>
-  <Accordion icon="cog" title="Customization Options">
-    **Specific style preferences**:
-    
-    - Use technical jargon or plain language
-    - Include code examples or focus on concepts
-    - Provide step-by-step instructions or high-level overviews
-    - Ask for confirmation or proceed with recommendations
-  </Accordion>
-</AccordionGroup>
-
-## Custom Instructions for MCP Tools
-
-### MCP Server Instructions
-
-<AccordionGroup>
-  <Accordion icon="server" title="Server-Level Instructions">
-    **Set default context for entire MCP servers**:
-    
-    - Avoid repetitive information
-    - Set consistent behavior across tools
-    - Define server-specific preferences
-    - Configure error handling approaches
-    
-    **Example**: "When using the database server, always include query execution time in responses"
-  </Accordion>
-  <Accordion icon="wrench" title="Tool-Specific Instructions">
-    **Customize individual tool behavior**:
-    
-    - Set default parameters
-    - Define output formatting
-    - Specify error handling
-    - Configure validation rules
-    
-    **Example**: "When using the chart tool, always use the company color scheme and include data source citations"
-  </Accordion>
-</AccordionGroup>
-
-### Tool Usage Guidelines
-
-<AccordionGroup>
-  <Accordion icon="list" title="Usage Preferences">
-    **Define how tools should be used**:
-    
-    - **Priority**: Which tools to prefer for specific tasks
-    - **Combinations**: How tools should work together
-    - **Fallbacks**: What to do when preferred tools aren't available
-    - **Validation**: How to verify tool outputs
-    
-    **Example**: "For data analysis, always use the Python executor with pandas, and create visualizations with the chart tool"
-  </Accordion>
-  <Accordion icon="shield" title="Error Handling">
-    **Customize error responses**:
-    
-    - How to handle tool failures
-    - What information to provide when errors occur
-    - When to retry vs. when to suggest alternatives
-    - How to communicate technical issues to users
-    
-    **Example**: "When a tool fails, explain what went wrong in simple terms and suggest alternative approaches"
-  </Accordion>
-</AccordionGroup>
-
-## Advanced Customization
-
-### Context-Aware Instructions
-
-<AccordionGroup>
-  <Accordion icon="brain" title="Dynamic Instructions">
-    **Instructions that adapt to context**:
-    
-    - Different instructions for different conversation types
-    - Context-specific tool usage
-    - Adaptive response styles
-    - Situational behavior changes
-    
-    **Example**: "In technical discussions, use detailed explanations with code examples. In business meetings, focus on high-level concepts and ROI"
-  </Accordion>
-  <Accordion icon="target" title="Project-Specific Context">
-    **Instructions for specific projects**:
-    
-    - Project-specific terminology
-    - Domain expertise requirements
-    - Tool preferences for project needs
-    - Collaboration guidelines
-    
-    **Example**: "For this e-commerce project, always consider mobile responsiveness and conversion optimization when making recommendations"
-  </Accordion>
-</AccordionGroup>
-
-### Multi-User Customization
-
-<Columns cols={2}>
-  <Card
-    title="👥 Team Settings"
-    icon="users"
-  >
-    Configure shared settings for team members
-  </Card>
-  <Card
-    title="🏢 Organization Context"
-    icon="building"
-  >
-    Set company-wide preferences and guidelines
-  </Card>
-  <Card
-    title="🔄 Role-Based Access"
-    icon="key"
-  >
-    Different settings for different user roles
-  </Card>
-  <Card
-    title="📊 Usage Analytics"
-    icon="chart-bar"
-  >
-    Track how customizations affect usage
-  </Card>
-</Columns>
-
-## Best Practices
-
-### Effective Customization
-
-<AccordionGroup>
-  <Accordion icon="lightbulb" title="Start Simple">
-    Begin with basic preferences, then add MCP customizations as you use specific tools regularly.
-  </Accordion>
-  <Accordion icon="target" title="Be Specific">
-    The more detailed your instructions, the better the assistant can help. Instead of "be helpful," try "explain technical concepts with real-world examples."
-  </Accordion>
-  <Accordion icon="test-tube" title="Test and Iterate">
-    Use the tool testing feature to see how your customizations affect tool behavior before using them in important chats.
-  </Accordion>
-  <Accordion icon="handshake" title="Project Synergy">
-    Combine personal preferences with project-specific instructions for domain expertise (e.g., "React developer" + "E-commerce project context").
-  </Accordion>
-</AccordionGroup>
-
-### Common Mistakes to Avoid
-
-- **Over-customization**: Too many specific instructions can confuse the assistant
-- **Inconsistent Instructions**: Conflicting instructions lead to unpredictable behavior
-- **Ignoring Context**: Not considering how instructions work in different situations
-- **Not Testing**: Failing to test customizations before using them in important conversations
-- **Static Settings**: Not updating preferences as your needs change
-
-## Pro Tips
-
-### Maximizing Customization Effectiveness
-
-<AccordionGroup>
-  <Accordion icon="star" title="Use Examples">
-    Provide specific examples of good responses to help the assistant understand your preferences.
-  </Accordion>
-  <Accordion icon="repeat" title="Iterate Regularly">
-    Review and update your customizations regularly as your needs and preferences evolve.
-  </Accordion>
-  <Accordion icon="users" title="Share with Team">
-    Share effective customizations with your team to improve collective productivity.
-  </Accordion>
-  <Accordion icon="chart-bar" title="Monitor Usage">
-    Use analytics to understand how your customizations affect assistant behavior and effectiveness.
-  </Accordion>
-</AccordionGroup>
-
-### Advanced Techniques
-
-- **Conditional Instructions**: Use if/then logic for different scenarios
-- **Template Instructions**: Create reusable instruction templates for different use cases
-- **Feedback Loops**: Use feedback to continuously improve customizations
-- **A/B Testing**: Test different instruction sets to find what works best
-- **Documentation**: Keep track of what customizations work well for future reference
-
-## Troubleshooting
-
-### Common Issues
-
-<AccordionGroup>
-  <Accordion icon="exclamation-triangle" title="Instructions Not Working">
-    **If customizations aren't taking effect**:
-    
-    - Check for conflicting instructions
-    - Verify instructions are saved properly
-    - Test with simple examples first
-    - Review instruction syntax and clarity
-  </Accordion>
-  <Accordion icon="question" title="Unexpected Behavior">
-    **If the assistant behaves unexpectedly**:
-    
-    - Review recent instruction changes
-    - Check for ambiguous instructions
-    - Test individual instruction components
-    - Reset to basic settings and rebuild gradually
-  </Accordion>
-  <Accordion icon="cog" title="Tool Integration Issues">
-    **If MCP tools aren't working as expected**:
-    
-    - Verify tool-specific instructions
-    - Check tool availability and permissions
-    - Test tools independently
-    - Review tool configuration settings
-  </Accordion>
-</AccordionGroup>
-
-## Getting Help
-
-<Card
-  title="Customization Support"
-  icon="headset"
-  href="mailto:support@keinsaas.com"
-  horizontal
->
-  Need help with system prompts or customization? Our support team is here to assist.
-</Card>
-
-<Note>
-  **Pro Tip**: Start with basic personal preferences, then gradually add more specific customizations as you become familiar with the system. Test each change to ensure it works as expected.
-</Note>
+- Write instructions as durable behavior, not one-off tasks
+- Keep agents focused instead of giving every agent every tool
+- State when the assistant should ask before acting
+- Define the desired output format for repeated workflows
+- Review prompts after adding new MCP tools

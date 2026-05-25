@@ -1,0 +1,43 @@
+---
+title: "Docker Deployment"
+description: "Run KeinSaaS Navigator with Docker Compose."
+---
+
+The repository includes a Docker Compose setup for running the app with PostgreSQL.
+
+## Start all services
+
+```bash
+pnpm i
+pnpm docker-compose:up
+```
+
+This builds the application image and starts the services defined in `docker/compose.yml`.
+
+## Start only PostgreSQL
+
+Use this when you want Docker for the database but still run the app with `pnpm dev`.
+
+```bash
+docker compose -f docker/compose.yml up -d postgres
+pnpm db:migrate
+pnpm dev
+```
+
+## Environment checklist
+
+- `BETTER_AUTH_SECRET` is set
+- `POSTGRES_URL` matches the database container or managed PostgreSQL instance
+- At least one model provider key is set
+- Storage variables are set if uploads or generated images are enabled
+- `BETTER_AUTH_URL` points at the public URL in production
+
+## Operational commands
+
+| Command | Purpose |
+| --- | --- |
+| `pnpm docker-compose:up` | Build and start services |
+| `pnpm docker-compose:down` | Stop services |
+| `pnpm docker-compose:logs` | Tail service logs |
+| `pnpm docker-compose:ps` | List running containers |
+| `pnpm docker-compose:update` | Pull code and rebuild containers |

@@ -1,0 +1,37 @@
+---
+title: "Image Generation"
+description: "Generate and edit images from Navigator conversations."
+---
+
+Navigator can create and edit images with configured AI image models. Use it for quick visual concepts, product mockups, creative drafts, and generated media attached to a thread.
+
+<Frame>
+  <img src="https://github.com/user-attachments/assets/b081c837-8948-4f4d-a2f4-c8630cf0eaa2" alt="Navigator image generation example" />
+</Frame>
+
+## Supported work
+
+<CardGroup cols={2}>
+  <Card title="Generate" icon="image">
+    Create new images from a prompt.
+  </Card>
+  <Card title="Edit" icon="pencil">
+    Modify existing images when the selected provider supports image editing.
+  </Card>
+  <Card title="Store" icon="folder">
+    Save generated images to the configured storage bucket.
+  </Card>
+  <Card title="Share" icon="share">
+    Keep outputs attached to the thread for review and follow-up.
+  </Card>
+</CardGroup>
+
+## Configuration
+
+Image generation depends on the providers enabled in your deployment. The README currently references OpenAI and Gemini image models.
+
+```dotenv
+OPENAI_API_KEY=
+GOOGLE_GENERATIVE_AI_API_KEY=
+SUPABASE_AI_GENERATED_BUCKET=Gemini Images
+```

@@ -1,0 +1,38 @@
+---
+title: "Contributing"
+description: "Contribute changes to KeinSaaS Navigator and its documentation."
+---
+
+## Before opening a pull request
+
+- Use focused commits with a clear scope
+- Run formatting, type checks, and relevant tests
+- Update docs when behavior or setup changes
+- Keep product naming as "KeinSaaS Navigator"
+
+## Useful commands
+
+```bash
+pnpm format
+pnpm check-types
+pnpm test
+pnpm test:e2e
+```
+
+## Documentation standards
+
+Write original docs for Navigator. It is fine to learn from the structure of other documentation sites, but do not copy or lightly rewrite another project's text.
+
+When documenting a feature:
+
+<Steps>
+  <Step title="Start from the actual behavior">
+    Use the app, README, or implementation as the source of truth.
+  </Step>
+  <Step title="Show the user's path">
+    Prefer setup steps, examples, and configuration snippets over generic marketing language.
+  </Step>
+  <Step title="Link related pages">
+    Connect concept pages to setup guides so readers can act immediately.
+  </Step>
+</Steps>

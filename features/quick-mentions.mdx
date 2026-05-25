@@ -1,343 +1,50 @@
 ---
-title: "Quick Tool Mentions (@) & Presets"
-description: "Instantly access tools and presets with simple @ mentions for rapid productivity"
+title: "Quick Mentions"
+description: "Invoke tools, agents, workflows, and presets directly from the chat input."
 ---
 
-## Quick Tool Mentions (@) & Presets
+Quick mentions are the fastest way to steer a Navigator response. Type `@` in the composer, choose the capability you want, and Navigator sends only the selected context to the model for that turn.
 
-Speed up your workflow with instant access to tools, presets, and shortcuts using simple @ mentions. No need to navigate menus or remember complex commands - just type @ and start working.
+<Frame>
+  <img src="https://github.com/user-attachments/assets/dfe76b3b-c3d8-436e-8a7c-7b23292e234c" alt="Navigator quick mention menu" />
+</Frame>
 
-<Card
-  title="Try @ Mentions"
-  icon="play"
-  href="https://app.keinsaas.com"
-  horizontal
->
-  Experience quick mentions in our live demo.
-</Card>
+## What you can mention
 
-## What are @ Mentions?
-
-@ mentions are a powerful way to quickly access tools, presets, and shortcuts by simply typing @ followed by the name of what you want to use. It's like having a command palette that's always available in your chat.
-
-### Key Benefits
-
-<Columns cols={2}>
-  <Card
-    title="⚡ Lightning Fast"
-    icon="bolt"
-  >
-    Access any tool or preset in seconds with just a few keystrokes.
+<CardGroup cols={2}>
+  <Card title="Tools" icon="wrench">
+    Call built-in tools or tools exposed by connected MCP servers.
   </Card>
-  <Card
-    title="🧠 No Memory Required"
-    icon="brain"
-  >
-    No need to remember complex commands or menu locations.
+  <Card title="Agents" icon="robot">
+    Route the next response through a specialized assistant.
   </Card>
-  <Card
-    title="🔍 Smart Suggestions"
-    icon="search"
-  >
-    Get intelligent suggestions as you type, even with partial matches.
+  <Card title="Workflows" icon="workflow">
+    Run a published visual workflow as if it were a normal chat tool.
   </Card>
-  <Card
-    title="🎯 Context Aware"
-    icon="target"
-  >
-    Suggestions adapt based on your current conversation and available tools.
+  <Card title="Presets" icon="sliders">
+    Reuse a curated set of tools for recurring tasks.
   </Card>
-</Columns>
+</CardGroup>
 
-## How @ Mentions Work
+## Mentions vs selected tools
 
-### Basic Usage
+Use a mention when a tool is needed for a single response. Use selected tools or presets when the same capability should stay available across the conversation.
 
-Simply type `@` in the chat input and you'll see a dropdown with available options:
+| Approach | Best for | Context sent to model |
+| --- | --- | --- |
+| `@` mention | One-off tool use | Only the mentioned capability |
+| Tool selection | Ongoing work with the same tool | The selected tool set |
+| Preset | Repeatable bundles of tools | The preset's configured tools |
 
-```
-@web search for latest AI news
-@chart create a bar chart from this data
-@agent connect me to the sales agent
-@preset generate a meeting summary
+## Examples
+
+```text
+@web research the latest Model Context Protocol releases
+@playwright open the staging site and check the login flow
+@github_manager summarize open pull requests
+@quarterly_report build the chart package from this CSV
 ```
 
-### Smart Suggestions
-
-As you type, the system provides intelligent suggestions:
-
-- **Fuzzy Matching**: Find tools even with typos or partial names
-- **Context Awareness**: Prioritize relevant tools based on conversation
-- **Recent Usage**: Show frequently used tools at the top
-- **Category Grouping**: Organize suggestions by tool type
-
-## Available @ Mentions
-
-### Core Tools
-
-<AccordionGroup>
-  <Accordion icon="search" title="@web - Web Search">
-    **Usage**: `@web search for [query]`
-    
-    **Examples**:
-    - `@web search for latest news about quantum computing`
-    - `@web find information about climate change solutions`
-    - `@web look up the weather in San Francisco`
-    
-    **Features**:
-    - Real-time web search results
-    - Source citation and links
-    - Summarized information
-    - Related topic suggestions
-  </Accordion>
-  <Accordion icon="chart-bar" title="@chart - Data Visualization">
-    **Usage**: `@chart create [chart type] from [data]`
-    
-    **Examples**:
-    - `@chart create a bar chart from this sales data`
-    - `@chart make a pie chart showing market share`
-    - `@chart generate a line graph for quarterly growth`
-    
-    **Features**:
-    - Multiple chart types (bar, line, pie, scatter, etc.)
-    - Interactive visualizations
-    - Export options (PNG, SVG, PDF)
-    - Custom styling and colors
-  </Accordion>
-  <Accordion icon="code" title="@code - Code Execution">
-    **Usage**: `@code execute [language] [code]`
-    
-    **Examples**:
-    - `@code execute python to sort this list`
-    - `@code run javascript to validate this email`
-    - `@code calculate compound interest with these values`
-    
-    **Features**:
-    - JavaScript and Python execution
-    - Safe sandboxed environment
-    - Error handling and debugging
-    - Result visualization
-  </Accordion>
-</AccordionGroup>
-
-### Agent Mentions
-
-<AccordionGroup>
-  <Accordion icon="robot" title="@agent - Custom Agents">
-    **Usage**: `@agent [agent name] [request]`
-    
-    **Examples**:
-    - `@agent sales help me qualify this lead`
-    - `@agent content write a blog post about AI trends`
-    - `@agent support troubleshoot this technical issue`
-    
-    **Features**:
-    - Instant agent switching
-    - Context preservation
-    - Specialized expertise
-    - Seamless handoffs
-  </Accordion>
-  <Accordion icon="users" title="@team - Team Collaboration">
-    **Usage**: `@team [action] [details]`
-    
-    **Examples**:
-    - `@team schedule meeting for tomorrow at 2pm`
-    - `@team assign task to John for project review`
-    - `@team send update to stakeholders about progress`
-    
-    **Features**:
-    - Team member management
-    - Task assignment and tracking
-    - Meeting scheduling
-    - Progress updates
-  </Accordion>
-</AccordionGroup>
-
-### Preset Mentions
-
-<AccordionGroup>
-  <Accordion icon="bookmark" title="@preset - Quick Presets">
-    **Usage**: `@preset [preset name] [context]`
-    
-    **Examples**:
-    - `@preset meeting-summary for today's standup`
-    - `@preset email-draft to client about project delay`
-    - `@preset report-template for quarterly review`
-    
-    **Features**:
-    - Pre-configured templates
-    - Context-aware customization
-    - One-click execution
-    - Custom preset creation
-  </Accordion>
-  <Accordion icon="cog" title="@workflow - Visual Workflows">
-    **Usage**: `@workflow [workflow name] [input]`
-    
-    **Examples**:
-    - `@workflow document-processing for this PDF`
-    - `@workflow data-analysis for sales figures`
-    - `@workflow content-generation for social media`
-    
-    **Features**:
-    - Complex multi-step processes
-    - Visual workflow execution
-    - Progress tracking
-    - Error handling and recovery
-  </Accordion>
-</AccordionGroup>
-
-## Creating Custom @ Mentions
-
-### Setting Up Presets
-
-<Steps>
-  <Step title="Access Preset Settings">
-    Go to Settings → Presets → Create New Preset
-  </Step>
-  <Step title="Define Trigger">
-    Choose your @ mention trigger (e.g., @my-preset)
-  </Step>
-  <Step title="Configure Action">
-    Set up what happens when the preset is triggered
-  </Step>
-  <Step title="Test and Save">
-    Test your preset and save it for future use
-  </Step>
-</Steps>
-
-### Custom Tool Mentions
-
-<AccordionGroup>
-  <Accordion icon="plug" title="MCP Tool Integration">
-    **Connect MCP tools to @ mentions:**
-    
-    1. Configure your MCP server
-    2. Map tools to @ mention triggers
-    3. Set up parameter handling
-    4. Test and deploy
-  </Accordion>
-  <Accordion icon="code" title="Custom Commands">
-    **Create custom @ commands:**
-    
-    - Define trigger phrases
-    - Set up execution logic
-    - Configure input parameters
-    - Add error handling
-  </Accordion>
-</AccordionGroup>
-
-## Advanced @ Mention Features
-
-### Parameter Handling
-
-Pass parameters to @ mentions for dynamic functionality:
-
-```
-@chart create bar chart from [data] with title "Sales Q4"
-@web search for [query] in [language] with [date range]
-@agent sales help with [lead type] for [company size]
-```
-
-### Chaining @ Mentions
-
-Combine multiple @ mentions for complex workflows:
-
-```
-@web search for AI trends → @chart create timeline → @preset generate report
-@agent research gather data → @agent analysis process results → @agent writing create summary
-```
-
-### Context-Aware Suggestions
-
-The system learns from your usage patterns:
-
-<Columns cols={2}>
-  <Card
-    title="📊 Usage Analytics"
-    icon="chart-line"
-  >
-    Track which @ mentions you use most frequently
-  </Card>
-  <Card
-    title="🎯 Smart Ranking"
-    icon="target"
-  >
-    Suggestions are ranked by relevance and frequency
-  </Card>
-  <Card
-    title="🔄 Learning Algorithm"
-    icon="brain"
-  >
-    System learns your preferences over time
-  </Card>
-  <Card
-    title="⚡ Quick Access"
-    icon="bolt"
-  >
-    Most used tools appear at the top of suggestions
-  </Card>
-</Columns>
-
-## Best Practices
-
-### @ Mention Optimization
-
-<AccordionGroup>
-  <Accordion icon="lightbulb" title="Use Descriptive Names">
-    Choose clear, memorable names for your custom @ mentions that describe their purpose.
-  </Accordion>
-  <Accordion icon="test-tube" title="Test Thoroughly">
-    Always test your @ mentions with various inputs to ensure they work as expected.
-  </Accordion>
-  <Accordion icon="book" title="Document Your Mentions">
-    Keep a list of your custom @ mentions and their purposes for easy reference.
-  </Accordion>
-  <Accordion icon="users" title="Share with Team">
-    Share useful @ mentions with your team to improve collective productivity.
-  </Accordion>
-</AccordionGroup>
-
-### Performance Tips
-
-- **Keep Names Short**: Shorter @ mention names are faster to type
-- **Use Abbreviations**: Create abbreviations for frequently used tools
-- **Group Related Tools**: Use consistent naming patterns for related functionality
-- **Regular Cleanup**: Remove unused @ mentions to keep suggestions clean
-
-## Troubleshooting
-
-### Common Issues
-
-<AccordionGroup>
-  <Accordion icon="exclamation-triangle" title="@ Mention Not Working">
-    **If @ mentions aren't appearing:**
-    
-    - Check if the tool is properly configured
-    - Verify MCP server connection
-    - Try refreshing the page
-    - Check for typos in the trigger name
-  </Accordion>
-  <Accordion icon="question" title="Suggestions Not Relevant">
-    **If suggestions seem off:**
-    
-    - Clear your usage history to reset learning
-    - Check tool configuration and permissions
-    - Verify context and conversation state
-    - Contact support for advanced troubleshooting
-  </Accordion>
-</AccordionGroup>
-
-## Getting Help
-
-<Card
-  title="@ Mention Support"
-  icon="headset"
-  href="mailto:support@keinsaas.com"
-  horizontal
->
-  Need help setting up custom @ mentions or troubleshooting issues? Our support team is here to assist.
-</Card>
-
-<Note>
-  **Pro Tip**: Start with the built-in @ mentions to get familiar with the system, then create your own custom mentions for tasks you perform frequently.
-</Note>
+<Tip>
+  Mentions are especially useful for keeping tool context small. Smaller tool context can make responses faster and easier for the model to route.
+</Tip>

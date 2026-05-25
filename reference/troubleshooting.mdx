@@ -1,0 +1,38 @@
+---
+title: "Troubleshooting"
+description: "Fix common local setup, provider, storage, and MCP issues."
+---
+
+## App will not start
+
+<AccordionGroup>
+  <Accordion title="Missing environment variables" icon="circle-alert">
+    Confirm `.env` includes `BETTER_AUTH_SECRET`, `POSTGRES_URL`, and at least one provider key.
+  </Accordion>
+  <Accordion title="Database connection failed" icon="database">
+    Check that PostgreSQL is running and that `POSTGRES_URL` points at the right host, port, database, user, and password.
+  </Accordion>
+  <Accordion title="Migrations not applied" icon="table">
+    Run `pnpm db:migrate` after creating or changing the database.
+  </Accordion>
+</AccordionGroup>
+
+## Model calls fail
+
+- Verify the provider key is valid and not restricted to another project
+- Confirm the selected model belongs to the configured provider
+- Restart the app after editing `.env`
+- For local models, confirm the endpoint is reachable from the server runtime
+
+## MCP tools do not appear
+
+Check the server command or URL first. Then confirm environment variables, authentication headers, and transport type. Use manual tool mode while testing.
+
+```dotenv
+FILE_BASED_MCP_CONFIG=false
+MCP_MAX_TOTAL_TIMEOUT=600000
+```
+
+## Uploads fail
+
+Confirm Supabase storage variables, bucket names, and service role permissions. The service role key must stay server-side and should not use a `NEXT_PUBLIC_` prefix.

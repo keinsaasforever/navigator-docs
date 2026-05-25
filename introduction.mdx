@@ -1,71 +1,63 @@
 ---
 title: "Introduction"
-description: "Get started with Keinsaas Navigator and learn how to automate your workflows with AI"
+description: "Understand the core ideas behind KeinSaaS Navigator."
 ---
 
-## Getting Started
+KeinSaaS Navigator is an AI workspace for running conversations, tools, agents, workflows, and project knowledge from one interface. It is built with Next.js and the Vercel AI SDK, and it supports multiple model providers including OpenAI, Anthropic, Google, xAI, OpenRouter, and local Ollama-compatible endpoints.
 
-Welcome to Keinsaas Navigator - your intelligent AI automation platform. Learn how to transform your workflows with powerful AI agents, seamless integrations, and intelligent automation capabilities.
-
-## What is Keinsaas Navigator?
-
-Keinsaas Navigator is your comprehensive AI automation ecosystem. It combines intelligent agents with powerful integrations to help you streamline work across your entire technology stack. Whether you're managing projects, collaborating with your team, or processing complex data, Keinsaas Navigator serves as your intelligent assistant that can understand, plan, and execute sophisticated workflows with ease.
-
-## Getting Started
-
-The best way to begin with Keinsaas Navigator is to set up your first integration and create a simple workflow. Our AI agents can help you build automations using natural language - simply describe what you want to achieve, and Keinsaas Navigator will handle all the technical implementation details.
+## Core concepts
 
 <CardGroup cols={2}>
-  <Card title="Create Your First Workflow" icon="workflow" href="/features/visual-workflows">
-    Learn how to build automated workflows using intuitive visual design and plain English descriptions.
+  <Card title="Threads" icon="message-square">
+    Conversations hold the user request, assistant response, selected model, files, and tool activity.
   </Card>
-  <Card title="Connect Integrations" icon="plug" href="/guides/mcp-server-setup">
-    Discover how to connect your tools and create powerful cross-platform automations.
+  <Card title="Tools" icon="wrench">
+    Built-in tools and MCP tools let the assistant search, execute code, query data, automate browsers, and call external services.
+  </Card>
+  <Card title="Agents" icon="robot">
+    Agents package instructions, model preferences, and tool access into reusable assistants for focused tasks.
+  </Card>
+  <Card title="Workflows" icon="workflow">
+    Visual workflows connect LLM and tool nodes, then become callable tools inside chat.
   </Card>
 </CardGroup>
 
-## Key Features
+## How it fits together
 
-<Columns cols={2}>
-  <Card
-    title="🔌 Tool Integration"
-    icon="wrench"
-    href="/guides/mcp-configuration"
-  >
-    Seamlessly connect and integrate with your existing tools and services through our MCP protocol.
-  </Card>
-  <Card
-    title="🔗 Visual Workflows"
-    icon="workflow"
-    href="/features/visual-workflows"
-  >
-    Build complex automation workflows using our intuitive drag-and-drop visual interface.
-  </Card>
-  <Card
-    title="🔍 Semantic Search"
-    icon="search"
-    href="/features/web-search"
-  >
-    Access real-time information and research capabilities with intelligent web search powered by Exa AI.
-  </Card>
-  <Card
-    title="🧠 Memory Storage"
-    icon="brain"
-    href="/features/custom-agents"
-  >
-    Store and retrieve context across conversations with our intelligent memory system.
-  </Card>
-</Columns>
+```mermaid
+flowchart LR
+  User["User request"] --> Chat["Navigator chat"]
+  Chat --> Model["Selected AI model"]
+  Chat --> Tools["Built-in tools"]
+  Chat --> MCP["MCP servers"]
+  Chat --> Agents["Custom agents"]
+  Chat --> Workflows["Visual workflows"]
+  Chat --> Files["Files and knowledge base"]
+  Model --> Response["Grounded assistant response"]
+  Tools --> Response
+  MCP --> Response
+  Agents --> Response
+  Workflows --> Response
+  Files --> Response
+```
 
-## About Resources
+## What to read first
 
-This resources section contains comprehensive guides, tutorials, and documentation to help you maximize the potential of Keinsaas Navigator. Whether you're a beginner looking to automate your first workflow or an advanced user seeking to optimize complex integrations, our documentation provides the insights and tools you need to succeed.
+<Steps>
+  <Step title="Choose how you want to run it">
+    Use the hosted app, run locally with `pnpm`, or deploy with Docker/Vercel.
+  </Step>
+  <Step title="Add one model provider">
+    Navigator only needs one working AI provider key to begin. Add more providers later for model choice and fallback.
+  </Step>
+  <Step title="Connect useful tools">
+    Start with web search or one MCP server, then add presets and agents once the first flow works.
+  </Step>
+  <Step title="Create repeatable workflows">
+    When a task becomes routine, move it into a workflow and invoke it with `@`.
+  </Step>
+</Steps>
 
-<Card
-  title="Start Building"
-  icon="rocket"
-  href="/quickstart"
-  horizontal
->
-  Ready to begin? Follow our quickstart guide to get up and running in minutes.
+<Card title="Install Navigator" icon="terminal" href="/installation" horizontal>
+  Set up dependencies, environment variables, PostgreSQL, and the local development server.
 </Card>

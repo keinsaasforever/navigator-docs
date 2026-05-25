@@ -1,35 +1,63 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "Keinsaas Navigator",
+  "name": "KeinSaaS Navigator",
   "colors": {
-    "primary": "#6366F1",
-    "light": "#8B5CF6",
-    "dark": "#4F46E5"
+    "primary": "#2563EB",
+    "light": "#14B8A6",
+    "dark": "#1D4ED8"
   },
   "favicon": "/favicon.svg",
+  "logo": {
+    "light": "/logo/light.svg",
+    "dark": "/logo/dark.svg"
+  },
   "navigation": {
     "tabs": [
+      {
+        "tab": "Documentation",
+        "groups": [
+          {
+            "group": "Start Here",
+            "pages": [
+              "index",
+              "introduction",
+              "quickstart",
+              "installation"
+            ]
+          },
+          {
+            "group": "Run Navigator",
+            "pages": [
+              "configuration/environment-variables",
+              "deployment/docker",
+              "deployment/vercel"
+            ]
+          }
+        ]
+      },
       {
         "tab": "Features",
         "groups": [
           {
-            "group": "Core Tools",
+            "group": "AI Workspace",
             "pages": [
-              "features/visual-workflows",
-              "features/custom-agents",
-              "features/voice-assistant",
               "features/quick-mentions",
               "features/tool-choice-mode",
-              "features/default-tools"
+              "features/custom-agents",
+              "features/visual-workflows",
+              "features/voice-assistant"
             ]
           },
           {
-            "group": "Advanced Capabilities",
+            "group": "Built-in Tools",
             "pages": [
+              "features/mcp-tools",
               "features/web-search",
-              "features/js-python-executor",
-              "features/data-visualization"
+              "features/image-generation",
+              "features/code-execution",
+              "features/data-visualization",
+              "features/knowledge-base"
             ]
           }
         ]
@@ -38,20 +66,22 @@
         "tab": "Guides",
         "groups": [
           {
-            "group": "Getting Started",
-            "pages": [
-              "introduction",
-              "index",
-              "quickstart"
-            ]
-          },
-          {
             "group": "Configuration",
             "pages": [
               "guides/mcp-server-setup",
               "guides/mcp-configuration",
               "guides/system-prompts",
-              "guides/chat-customization"
+              "guides/chat-customization",
+              "guides/file-storage",
+              "guides/local-models"
+            ]
+          },
+          {
+            "group": "Project",
+            "pages": [
+              "development",
+              "reference/troubleshooting",
+              "reference/contributing"
             ]
           }
         ]
@@ -60,21 +90,17 @@
     "global": {
       "anchors": [
         {
+          "anchor": "App",
+          "href": "https://app.keinsaas.com",
+          "icon": "play"
+        },
+        {
           "anchor": "Support",
           "href": "mailto:support@keinsaas.com",
           "icon": "headset"
-        },
-        {
-          "anchor": "Demo",
-          "href": "https://app.keinsaas.com",
-          "icon": "play"
         }
       ]
     }
-  },
-  "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg"
   },
   "navbar": {
     "links": [
@@ -85,21 +111,21 @@
     ],
     "primary": {
       "type": "button",
-      "label": "Try Demo",
+      "label": "Open app",
       "href": "https://app.keinsaas.com"
     }
   },
   "contextual": {
     "options": [
-     "copy",
-     "view",
-     "chatgpt",
-     "claude",
-     "perplexity",
-     "mcp",
-     "cursor",
-     "vscode"
-   ]
+      "copy",
+      "view",
+      "chatgpt",
+      "claude",
+      "perplexity",
+      "mcp",
+      "cursor",
+      "vscode"
+    ]
   },
   "footer": {
     "socials": {

@@ -1,0 +1,54 @@
+---
+title: "Vercel Deployment"
+description: "Deploy KeinSaaS Navigator to Vercel with managed services."
+---
+
+Navigator can run on Vercel as a standard Next.js application.
+
+## Recommended services
+
+<CardGroup cols={2}>
+  <Card title="Database" icon="database">
+    Use a managed PostgreSQL service and set `POSTGRES_URL`.
+  </Card>
+  <Card title="Storage" icon="folder">
+    Use Supabase Storage or another configured storage driver for uploads and generated images.
+  </Card>
+  <Card title="Model providers" icon="brain">
+    Add one or more API keys for OpenAI, Anthropic, Google, xAI, OpenRouter, or compatible providers.
+  </Card>
+  <Card title="Search and voice" icon="sparkles">
+    Add Exa and AssemblyAI keys only if those features are enabled.
+  </Card>
+</CardGroup>
+
+## Configure environment variables
+
+Set the production values in the Vercel project settings:
+
+```dotenv
+BETTER_AUTH_URL=https://your-domain.com
+BETTER_AUTH_SECRET=your-generated-secret
+POSTGRES_URL=postgres://...
+OPENAI_API_KEY=...
+```
+
+Add Supabase, OAuth, billing, analytics, and tool keys as needed.
+
+## Build settings
+
+Use the repository defaults unless your deployment has a custom monorepo layout.
+
+| Setting | Value |
+| --- | --- |
+| Framework preset | Next.js |
+| Install command | `pnpm i` |
+| Build command | `pnpm build` |
+| Output directory | Next.js default |
+
+## Production checks
+
+- Run migrations against the production database before opening access
+- Confirm auth callbacks match `BETTER_AUTH_URL`
+- Keep service role keys out of client-visible variables
+- Test upload, chat, model selection, and one MCP tool after deploy

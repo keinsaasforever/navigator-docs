@@ -1,607 +1,84 @@
 ---
-title: "MCP Server Configuration Guide"
-description: "Detailed guide for configuring MCP servers and tools"
+title: "MCP Configuration"
+description: "Reference examples for configuring stdio, SSE, and streamable HTTP MCP servers."
 ---
 
-## MCP Server Configuration Guide
+Navigator stores MCP server definitions as structured configuration. A server definition describes how to connect, what to call it, and which environment values it needs.
 
-This comprehensive guide explains how to add MCP servers by defining their configuration in JSON format. Each MCP server entry is stored in the database and supports different transport types: stdio, SSE, and StreamableHTTP.
+## Common fields
 
-<Card
-  title="Try MCP Configuration"
-  icon="play"
-  href="https://app.keinsaas.com"
-  horizontal
->
-  Experience MCP configuration in our live demo.
-</Card>
+| Field | Purpose |
+| --- | --- |
+| `name` | Stable identifier shown in Navigator |
+| `description` | Human-readable explanation of the server |
+| `transport` | `stdio`, `sse`, or `streamable-http` |
+| `command` | Executable for `stdio` servers |
+| `args` | Arguments for the `stdio` command |
+| `url` | Remote endpoint for SSE or streamable HTTP |
+| `headers` | Optional request headers for remote servers |
+| `env` | Environment variables for local server processes |
 
-## MCP Configuration Overview
+## stdio
 
-MCP (Model Context Protocol) configuration allows you to define how Keinsaas Navigator connects to and interacts with external tools and services. The configuration system supports multiple transport types and provides flexible options for different use cases.
-
-### Key Concepts
-
-<Columns cols={2}>
-  <Card
-    title="🔌 Transport Types"
-    icon="plug"
-  >
-    Different ways to connect to MCP servers (stdio, SSE, HTTP)
-  </Card>
-  <Card
-    title="⚙️ Configuration Format"
-    icon="cog"
-  >
-    JSON-based configuration for easy management
-  </Card>
-  <Card
-    title="🛡️ Security"
-    icon="shield"
-  >
-    Secure authentication and connection management
-  </Card>
-  <Card
-    title="🔄 Dynamic Updates"
-    icon="sync"
-  >
-    Add and update MCP servers without restarting
-  </Card>
-</Columns>
-
-## Transport Types
-
-### stdio Transport
-
-<AccordionGroup>
-  <Accordion icon="terminal" title="What is stdio?">
-    **Standard input/output transport**:
-    
-    - Direct process communication
-    - Local server execution
-    - High performance
-    - Simple setup
-    
-    **Best for**: Local tools, development, simple integrations
-  </Accordion>
-  <Accordion icon="cog" title="Configuration Example">
-    **stdio configuration**:
-    ```json
-    {
-      "name": "local-file-server",
-      "description": "Local file management server",
-      "transport": "stdio",
-      "command": "node",
-      "args": ["/path/to/file-server.js"],
-      "env": {
-        "NODE_ENV": "production"
-      }
-    }
-    ```
-  </Accordion>
-</AccordionGroup>
-
-### SSE (Server-Sent Events) Transport
-
-<AccordionGroup>
-  <Accordion icon="broadcast" title="What is SSE?">
-    **Server-Sent Events transport**:
-    
-    - Real-time communication
-    - Web-based servers
-    - Event streaming
-    - HTTP-based
-    
-    **Best for**: Web services, real-time updates, cloud-based tools
-  </Accordion>
-  <Accordion icon="cog" title="Configuration Example">
-    **SSE configuration**:
-    ```json
-    {
-      "name": "web-analytics-server",
-      "description": "Web analytics and reporting server",
-      "transport": "sse",
-      "url": "https://api.example.com/mcp/sse",
-      "headers": {
-        "Authorization": "Bearer your-token-here",
-        "Content-Type": "application/json"
-      }
-    }
-    ```
-  </Accordion>
-</AccordionGroup>
-
-### StreamableHTTP Transport
-
-<AccordionGroup>
-  <Accordion icon="globe" title="What is StreamableHTTP?">
-    **Streamable HTTP transport**:
-    
-    - HTTP-based communication
-    - Streaming support
-    - RESTful integration
-    - Cloud-native
-    
-    **Best for**: REST APIs, microservices, cloud integrations
-  </Accordion>
-  <Accordion icon="cog" title="Configuration Example">
-    **StreamableHTTP configuration**:
-    ```json
-    {
-      "name": "database-server",
-      "description": "Database access and management server",
-      "transport": "streamablehttp",
-      "url": "https://db.example.com/mcp",
-      "method": "POST",
-      "headers": {
-        "Authorization": "Bearer your-db-token",
-        "Content-Type": "application/json"
-      },
-      "timeout": 30000
-    }
-    ```
-  </Accordion>
-</AccordionGroup>
-
-## Configuration Structure
-
-### Basic Configuration Schema
+Use `stdio` when Navigator launches a local process and communicates over standard input/output.
 
 ```json
 {
-  "name": "server-name",
-  "description": "Human-readable description",
-  "transport": "stdio|sse|streamablehttp",
-  "enabled": true,
-  "timeout": 30000,
-  "retry": {
-    "attempts": 3,
-    "delay": 1000
-  },
-  "auth": {
-    "type": "none|bearer|basic|apikey",
-    "credentials": {}
-  },
-  "tools": [],
-  "resources": []
-}
-```
-
-### Required Fields
-
-<AccordionGroup>
-  <Accordion icon="tag" title="name">
-    **Server identifier**:
-    
-    - Unique name for the server
-    - Used for identification and management
-    - Must be alphanumeric with hyphens
-    - Example: "my-database-server"
-  </Accordion>
-  <Accordion icon="text" title="description">
-    **Human-readable description**:
-    
-    - Brief description of the server's purpose
-    - Used in UI and documentation
-    - Should be clear and concise
-    - Example: "PostgreSQL database access server"
-  </Accordion>
-  <Accordion icon="plug" title="transport">
-    **Transport type**:
-    
-    - Must be one of: stdio, sse, streamablehttp
-    - Determines how the server is accessed
-    - Affects configuration options
-    - Example: "stdio"
-  </Accordion>
-</AccordionGroup>
-
-### Optional Fields
-
-<AccordionGroup>
-  <Accordion icon="toggle" title="enabled">
-    **Server status**:
-    
-    - Boolean value (true/false)
-    - Controls whether server is active
-    - Default: true
-    - Can be changed without restart
-  </Accordion>
-  <Accordion icon="clock" title="timeout">
-    **Connection timeout**:
-    
-    - Timeout in milliseconds
-    - Default: 30000 (30 seconds)
-    - Used for connection establishment
-    - Should be appropriate for server type
-  </Accordion>
-  <Accordion icon="repeat" title="retry">
-    **Retry configuration**:
-    
-    - Number of retry attempts
-    - Delay between retries
-    - Exponential backoff support
-    - Helps with temporary failures
-  </Accordion>
-</AccordionGroup>
-
-## Authentication Configuration
-
-### No Authentication
-
-```json
-{
-  "auth": {
-    "type": "none"
-  }
-}
-```
-
-### Bearer Token Authentication
-
-```json
-{
-  "auth": {
-    "type": "bearer",
-    "credentials": {
-      "token": "your-bearer-token-here"
-    }
-  }
-}
-```
-
-### Basic Authentication
-
-```json
-{
-  "auth": {
-    "type": "basic",
-    "credentials": {
-      "username": "your-username",
-      "password": "your-password"
-    }
-  }
-}
-```
-
-### API Key Authentication
-
-```json
-{
-  "auth": {
-    "type": "apikey",
-    "credentials": {
-      "key": "your-api-key",
-      "header": "X-API-Key"
-    }
-  }
-}
-```
-
-## Tool Configuration
-
-### Defining Tools
-
-<AccordionGroup>
-  <Accordion icon="wrench" title="Tool Structure">
-    **Basic tool configuration**:
-    ```json
-    {
-      "tools": [
-        {
-          "name": "tool-name",
-          "description": "Tool description",
-          "inputSchema": {
-            "type": "object",
-            "properties": {
-              "param1": {
-                "type": "string",
-                "description": "Parameter description"
-              }
-            },
-            "required": ["param1"]
-          }
-        }
-      ]
-    }
-    ```
-  </Accordion>
-  <Accordion icon="cog" title="Input Schema">
-    **JSON Schema for tool inputs**:
-    
-    - Defines required parameters
-    - Specifies data types
-    - Provides validation rules
-    - Enables auto-completion
-  </Accordion>
-</AccordionGroup>
-
-### Resource Configuration
-
-<AccordionGroup>
-  <Accordion icon="folder" title="Resource Structure">
-    **Resource configuration**:
-    ```json
-    {
-      "resources": [
-        {
-          "uri": "resource://database/tables",
-          "name": "Database Tables",
-          "description": "Access to database tables",
-          "mimeType": "application/json"
-        }
-      ]
-    }
-    ```
-  </Accordion>
-  <Accordion icon="link" title="Resource Types">
-    **Different resource types**:
-    
-    - Database resources
-    - File system resources
-    - API endpoints
-    - Configuration data
-  </Accordion>
-</AccordionGroup>
-
-## Configuration Management
-
-### Adding New Servers
-
-<Steps>
-  <Step title="Prepare Configuration">
-    Create JSON configuration for your MCP server
-  </Step>
-  <Step title="Validate Configuration">
-    Check that all required fields are present and valid
-  </Step>
-  <Step title="Add to Database">
-    Insert configuration into the MCP servers table
-  </Step>
-  <Step title="Test Connection">
-    Verify that the server can be reached and responds
-  </Step>
-  <Step title="Enable Tools">
-    Activate the tools you want to use
-  </Step>
-  <Step title="Test Tools">
-    Test individual tools to ensure they work correctly
-  </Step>
-</Steps>
-
-### Updating Existing Servers
-
-<AccordionGroup>
-  <Accordion icon="edit" title="Configuration Updates">
-    **Update server configuration**:
-    
-    - Modify existing configuration
-    - Update authentication credentials
-    - Change transport settings
-    - Add or remove tools
-  </Accordion>
-  <Accordion icon="sync" title="Hot Reloading">
-    **Apply changes without restart**:
-    
-    - Configuration changes take effect immediately
-    - No need to restart Keinsaas Navigator
-    - Tools become available instantly
-    - Seamless user experience
-  </Accordion>
-</AccordionGroup>
-
-### Removing Servers
-
-<AccordionGroup>
-  <Accordion icon="trash" title="Disable vs. Remove">
-    **Two options for server management**:
-    
-    - **Disable**: Keep configuration but stop using server
-    - **Remove**: Completely delete server configuration
-  </Accordion>
-  <Accordion icon="warning" title="Dependencies">
-    **Check for dependencies**:
-    
-    - Ensure no workflows depend on the server
-    - Check for active tool usage
-    - Backup configuration before removal
-    - Notify users of changes
-  </Accordion>
-</AccordionGroup>
-
-## Common Configuration Examples
-
-### Database Server
-
-```json
-{
-  "name": "postgresql-server",
-  "description": "PostgreSQL database access server",
+  "name": "filesystem",
+  "description": "Local file tools",
   "transport": "stdio",
   "command": "node",
-  "args": ["/path/to/postgres-mcp-server.js"],
+  "args": ["/absolute/path/to/server.js"],
   "env": {
-    "DATABASE_URL": "postgresql://user:pass@localhost:5432/dbname"
-  },
-  "timeout": 30000,
-  "retry": {
-    "attempts": 3,
-    "delay": 1000
-  },
-  "tools": [
-    {
-      "name": "query-database",
-      "description": "Execute SQL queries on the database",
-      "inputSchema": {
-        "type": "object",
-        "properties": {
-          "query": {
-            "type": "string",
-            "description": "SQL query to execute"
-          }
-        },
-        "required": ["query"]
-      }
-    }
-  ]
+    "ROOT_DIR": "/Users/example/workspace"
+  }
 }
 ```
 
-### API Integration Server
+## SSE
+
+Use SSE when the server exposes a server-sent-events endpoint.
 
 ```json
 {
-  "name": "weather-api-server",
-  "description": "Weather data API integration server",
-  "transport": "streamablehttp",
-  "url": "https://api.weather.com/mcp",
-  "method": "POST",
+  "name": "analytics",
+  "description": "Analytics lookup tools",
+  "transport": "sse",
+  "url": "https://tools.example.com/sse",
   "headers": {
-    "Authorization": "Bearer your-weather-api-key",
-    "Content-Type": "application/json"
-  },
-  "timeout": 10000,
-  "auth": {
-    "type": "bearer",
-    "credentials": {
-      "token": "your-weather-api-key"
-    }
-  },
-  "tools": [
-    {
-      "name": "get-weather",
-      "description": "Get current weather for a location",
-      "inputSchema": {
-        "type": "object",
-        "properties": {
-          "location": {
-            "type": "string",
-            "description": "City name or coordinates"
-          }
-        },
-        "required": ["location"]
-      }
-    }
-  ]
+    "Authorization": "Bearer ${ANALYTICS_MCP_TOKEN}"
+  }
 }
 ```
 
-### File System Server
+## Streamable HTTP
+
+Use streamable HTTP for modern remote MCP servers that accept normal HTTP requests and stream responses.
 
 ```json
 {
-  "name": "file-system-server",
-  "description": "Local file system access server",
-  "transport": "stdio",
-  "command": "python",
-  "args": ["/path/to/filesystem-mcp-server.py"],
-  "timeout": 15000,
-  "tools": [
-    {
-      "name": "read-file",
-      "description": "Read contents of a file",
-      "inputSchema": {
-        "type": "object",
-        "properties": {
-          "path": {
-            "type": "string",
-            "description": "Path to the file to read"
-          }
-        },
-        "required": ["path"]
-      }
-    },
-    {
-      "name": "write-file",
-      "description": "Write content to a file",
-      "inputSchema": {
-        "type": "object",
-        "properties": {
-          "path": {
-            "type": "string",
-            "description": "Path where to write the file"
-          },
-          "content": {
-            "type": "string",
-            "description": "Content to write to the file"
-          }
-        },
-        "required": ["path", "content"]
-      }
-    }
-  ]
+  "name": "crm",
+  "description": "CRM account tools",
+  "transport": "streamable-http",
+  "url": "https://tools.example.com/mcp",
+  "headers": {
+    "Authorization": "Bearer ${CRM_MCP_TOKEN}"
+  }
 }
 ```
 
-## Best Practices
+## Timeouts
 
-### Configuration Management
+Long browser or data jobs may need more time than a default model response. Set:
 
-<AccordionGroup>
-  <Accordion icon="lightbulb" title="Start Simple">
-    Begin with basic configurations and add complexity gradually.
-  </Accordion>
-  <Accordion icon="shield" title="Security First">
-    Always use secure authentication and encrypted connections.
-  </Accordion>
-  <Accordion icon="book" title="Document Everything">
-    Keep detailed documentation of your configurations.
-  </Accordion>
-  <Accordion icon="test-tube" title="Test Thoroughly">
-    Test all configurations before deploying to production.
-  </Accordion>
-</AccordionGroup>
+```dotenv
+MCP_MAX_TOTAL_TIMEOUT=600000
+```
 
-### Performance Optimization
+The example above allows up to 10 minutes for a full MCP tool call sequence.
 
-- **Connection Pooling**: Use connection pooling for database servers
-- **Timeout Settings**: Set appropriate timeouts for different server types
-- **Retry Logic**: Implement smart retry logic for transient failures
-- **Monitoring**: Monitor server performance and health
-- **Caching**: Use caching where appropriate to reduce load
+## Security notes
 
-## Troubleshooting
-
-### Common Issues
-
-<AccordionGroup>
-  <Accordion icon="exclamation-triangle" title="Connection Failures">
-    **If servers won't connect**:
-    
-    - Check network connectivity
-    - Verify server URLs and ports
-    - Confirm authentication credentials
-    - Check firewall settings
-  </Accordion>
-  <Accordion icon="key" title="Authentication Errors">
-    **If authentication fails**:
-    
-    - Verify API keys and tokens
-    - Check credential expiration
-    - Confirm permission levels
-    - Test with different credentials
-  </Accordion>
-  <Accordion icon="clock" title="Timeout Issues">
-    **If requests timeout**:
-    
-    - Increase timeout values
-    - Check server performance
-    - Optimize query complexity
-    - Review network latency
-  </Accordion>
-</AccordionGroup>
-
-## Getting Help
-
-<Card
-  title="MCP Configuration Support"
-  icon="headset"
-  href="mailto:support@keinsaas.com"
-  horizontal
->
-  Need help with MCP configuration or want to suggest improvements? Our support team is here to assist.
-</Card>
-
-<Note>
-  **Pro Tip**: Start with the configuration examples provided, then customize them for your specific needs. Always test configurations in a development environment before deploying to production.
-</Note>
+<Warning>
+  Store tokens in environment variables, not directly in committed JSON. Use manual tool mode for tools that write data, send messages, place orders, or mutate production systems.
+</Warning>

@@ -1,0 +1,92 @@
+---
+title: "Environment Variables"
+description: "Configure auth, model providers, storage, billing, search, and tool integrations."
+---
+
+Navigator reads configuration from `.env`.
+
+## Required for a basic local app
+
+```dotenv
+BETTER_AUTH_SECRET=your-generated-secret
+POSTGRES_URL=postgres://your_username:your_password@localhost:5432/your_database_name
+```
+
+Add at least one model provider:
+
+```dotenv
+OPENAI_API_KEY=
+ANTHROPIC_API_KEY=
+GOOGLE_GENERATIVE_AI_API_KEY=
+XAI_API_KEY=
+OPENROUTER_API_KEY=
+OLLAMA_BASE_URL=http://localhost:11434/api
+```
+
+## Application URL
+
+Set `BETTER_AUTH_URL` in hosted environments so cookies and redirects are generated for the correct origin.
+
+```dotenv
+BETTER_AUTH_URL=https://app.example.com
+BETTER_AUTH_TRUSTED_ORIGINS=https://staging.example.com,https://app.example.com
+```
+
+## Tools
+
+```dotenv
+EXA_API_KEY=
+ASSEMBLYAI_API_KEY=
+FILE_BASED_MCP_CONFIG=false
+MCP_MAX_TOTAL_TIMEOUT=
+```
+
+`EXA_API_KEY` enables web search and URL extraction. `ASSEMBLYAI_API_KEY` enables voice dictation. `MCP_MAX_TOTAL_TIMEOUT` is useful for long-running MCP calls.
+
+## Code execution
+
+```dotenv
+NEXT_PUBLIC_CODE_EXECUTION_BACKEND=
+E2B_API_KEY=
+```
+
+Use `NEXT_PUBLIC_CODE_EXECUTION_BACKEND=local` for browser-worker execution only. Leave it unset or use E2B when you want server-side sandbox execution and preview templates.
+
+## Supabase Storage
+
+```dotenv
+FILE_STORAGE_TYPE=supabase
+FILE_STORAGE_PREFIX=uploads
+SUPABASE_URL=
+SUPABASE_SERVICE_ROLE_KEY=
+SUPABASE_AVATAR_BUCKET=avatars
+SUPABASE_ATTACHMENT_BUCKET=attachments
+SUPABASE_AI_GENERATED_BUCKET=Gemini Images
+```
+
+Navigator uses Better Auth, so storage access is enforced by the application API routes. Keep the service role key server-side only.
+
+## OAuth sign-in
+
+```dotenv
+GITHUB_CLIENT_ID=
+GITHUB_CLIENT_SECRET=
+GOOGLE_CLIENT_ID=
+GOOGLE_CLIENT_SECRET=
+MICROSOFT_CLIENT_ID=
+MICROSOFT_CLIENT_SECRET=
+MICROSOFT_TENANT_ID=
+```
+
+Set `DISABLE_SIGN_UP=1` when only existing users should be allowed to sign in.
+
+## Billing and lifecycle services
+
+```dotenv
+AUTUMN_SECRET_KEY=
+AUTUMN_WEBHOOK_SECRET=
+LOOPS_API_KEY=
+POSTHOG_KEY=
+```
+
+Use these only when you have enabled billing, lifecycle emails, or analytics for your deployment.

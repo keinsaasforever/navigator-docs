@@ -1,151 +1,73 @@
 ---
-title: "Keinsaas Navigator"
-description: "Your intelligent AI assistant powered by advanced workflows, custom agents, and powerful tools"
+title: "KeinSaaS Navigator"
+description: "An AI workspace for agents, MCP tools, workflows, voice, files, search, and code execution."
 ---
 
-## Welcome to Keinsaas Navigator
+KeinSaaS Navigator brings the chat interface, tool layer, and automation builder into one workspace. Use it as an AI assistant, a team tool hub, or a self-hosted foundation for custom internal copilots.
 
-Transform your workflow with our intelligent AI assistant that combines the power of visual workflows, custom agents, and real-time voice interaction. Built on the foundation of [navigator](https://github.com/cgoinglove/navigator), Keinsaas Navigator brings enterprise-grade AI capabilities to your fingertips.
-
-<Card
-  title="Try the Demo"
-  icon="play"
-  href="https://app.keinsaas.com"
-  horizontal
->
-  Experience Keinsaas Navigator in action with our live demo.
-</Card>
-
-## Core Features
-
-Powerful tools and capabilities designed to enhance your productivity and creativity.
-
-<Columns cols={2}>
-  <Card
-    title="🔗 Visual Workflows as Custom Tools"
-    icon="workflow"
-    href="/features/visual-workflows"
-  >
-    Create and manage custom workflows with an intuitive visual interface. Build complex automation without coding.
-  </Card>
-  <Card
-    title="🤖 Custom Agents"
-    icon="robot"
-    href="/features/custom-agents"
-  >
-    Deploy specialized AI agents tailored to your specific needs and use cases.
-  </Card>
-  <Card
-    title="🎙️ Realtime Voice Assistant + MCP Tools"
-    icon="microphone"
-    href="/features/voice-assistant"
-  >
-    Interact naturally with voice commands and leverage MCP (Model Context Protocol) tools seamlessly.
-  </Card>
-  <Card
-    title="⚡️ Quick Tool Mentions (@) & Presets"
-    icon="at"
-    href="/features/quick-mentions"
-  >
-    Instantly access tools and presets with simple @ mentions for rapid productivity.
-  </Card>
-  <Card
-    title="🧭 Tool Choice Mode"
-    icon="compass"
-    href="/features/tool-choice-mode"
-  >
-    Intelligent tool selection that adapts to your context and preferences automatically.
-  </Card>
-  <Card
-    title="🛠️ Default Tools"
-    icon="wrench"
-    href="/features/default-tools"
-  >
-    Essential tools always at your disposal for common tasks and operations.
-  </Card>
-</Columns>
-
-## Advanced Capabilities
-
-Take your productivity to the next level with these powerful features.
-
-<Columns cols={2}>
-  <Card
-    title="🌐 Web Search"
-    icon="globe"
-    href="/features/web-search"
-  >
-    Access real-time web information and research capabilities powered by Exa AI.
-  </Card>
-  <Card
-    title="⚡️ JS,PYTHON Executor"
-    icon="code"
-    href="/features/js-python-executor"
-  >
-    Execute JavaScript and Python code directly within your conversations for data analysis and automation.
-  </Card>
-  <Card
-    title="📊 Data Visualization Tools"
-    icon="chart-bar"
-    href="/features/data-visualization"
-  >
-    Create interactive tables, charts, and visualizations from your data with advanced filtering and export options.
-  </Card>
-</Columns>
-
-## Getting Started
+<Frame>
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcSet="/images/hero-dark.png" />
+    <img src="/images/hero-light.png" alt="KeinSaaS Navigator interface" />
+  </picture>
+</Frame>
 
 <CardGroup cols={2}>
-  <Card title="Quick Start" icon="rocket" href="/quickstart">
-    Get up and running with Keinsaas Navigator in minutes.
+  <Card title="Get running" icon="rocket" href="/quickstart">
+    Start with the hosted app, Docker, or a local development setup.
   </Card>
-  <Card title="MCP Server Setup" icon="plug" href="/guides/mcp-server-setup">
-    Configure MCP servers and tools for enhanced functionality.
+  <Card title="Connect tools" icon="plug" href="/guides/mcp-server-setup">
+    Add MCP servers so Navigator can browse, call APIs, inspect data, and operate services.
   </Card>
-  <Card title="System Prompts" icon="message" href="/guides/system-prompts">
-    Customize your AI assistant's behavior and responses.
+  <Card title="Build workflows" icon="workflow" href="/features/visual-workflows">
+    Turn repeatable multi-step processes into reusable tools that can be invoked from chat.
   </Card>
-  <Card title="Chat Customization" icon="sliders" href="/guides/chat-customization">
-    Personalize your interaction experience.
+  <Card title="Customize agents" icon="robot" href="/features/custom-agents">
+    Create focused assistants with their own instructions, model choices, and tool access.
   </Card>
 </CardGroup>
 
-## Why Choose Keinsaas Navigator?
+## What Navigator does
+
+Navigator is built for people who want AI to do more than answer text prompts. It can route tasks through selected tools, execute code, generate images, search the web, call MCP servers, and reuse visual workflows as chat commands.
 
 <Columns cols={2}>
-  <Card
-    title="🚀 Enterprise Ready"
-    icon="building"
-  >
-    Built for scale with enterprise-grade security, authentication, and deployment options.
+  <Card title="Chat with tools" icon="wrench">
+    Mention a tool with `@`, select a preset, or let the model decide when tool use makes sense.
   </Card>
-  <Card
-    title="🔧 Highly Customizable"
-    icon="cog"
-  >
-    Extensive customization options for system prompts, tool configurations, and user preferences.
+  <Card title="Automate work" icon="diagram-project">
+    Combine LLM nodes and tool nodes into workflows that can be published back into the chat experience.
   </Card>
-  <Card
-    title="🌍 Multi-Provider Support"
-    icon="cloud"
-  >
-    Works with OpenAI, Claude, Gemini, and other leading AI providers for maximum flexibility.
+  <Card title="Bring your files" icon="folder-open">
+    Upload files for chat context or build project knowledge bases for retrieval-augmented answers.
   </Card>
-  <Card
-    title="📱 Modern Interface"
-    icon="mobile"
-  >
-    Clean, intuitive design that works seamlessly across desktop and mobile devices.
+  <Card title="Run your stack" icon="server">
+    Deploy with Next.js, PostgreSQL, Supabase Storage, and the AI providers your team already uses.
   </Card>
 </Columns>
 
-## Ready to Get Started?
+## Product demos
 
-<Card
-  title="Start Your Journey"
-  icon="arrow-right"
-  href="/quickstart"
-  horizontal
->
-  Follow our quickstart guide to set up Keinsaas Navigator and begin transforming your workflow today.
+These demos come from the Navigator project README and show the core interaction model.
+
+<AccordionGroup>
+  <Accordion title="Browser automation through MCP" icon="globe">
+    <Frame>
+      <img src="https://github.com/user-attachments/assets/e4febb04-26d5-45da-a7bb-f7d452d333c2" alt="Navigator using a browser automation MCP server" />
+    </Frame>
+  </Accordion>
+  <Accordion title="Visual workflows as chat tools" icon="workflow">
+    <Frame>
+      <img src="https://github.com/user-attachments/assets/e69e72e8-595c-480e-b519-4531f4c6331f" alt="Navigator visual workflow builder" />
+    </Frame>
+  </Accordion>
+  <Accordion title="Custom agents" icon="robot">
+    <Frame>
+      <img src="https://github.com/user-attachments/assets/d0a325c0-ff1e-4038-b6bf-fcf57659a5c1" alt="Navigator custom agent configuration" />
+    </Frame>
+  </Accordion>
+</AccordionGroup>
+
+<Card title="Start with the quickstart" icon="arrow-right" href="/quickstart" horizontal>
+  Install Navigator, configure one AI provider, and open your first workspace.
 </Card>
