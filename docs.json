@@ -79,7 +79,6 @@
           {
             "group": "Project",
             "pages": [
-              "development",
               "reference/troubleshooting",
               "reference/contributing"
             ]
